@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.shortcuts import HttpResponseRedirect
+from django.urls import reverse
 from django import forms
+
+
 
 
 
@@ -11,10 +15,28 @@ def index(request):
         "tasks": request.session["tasks"]
     })
 
+
 def add(request):
-    return render(request, "todo/index.html",)
+    request.session.modified = True
+    if request.method == "POST":
+        task = request.POST["add_name"]
+        date = request.POST["add_date"]
+        try:
+            request.session["tasks"] += [task]
+        except:
+            pass
+    return HttpResponseRedirect(reverse("todo:index"))
 
 
 def remove(request):
-    return render(request, "todo/index.html",)
-
+    if request.method == "POST":
+        name = request.POST.get("task_value", "")
+        if name in request.session["tasks"]:
+            # The django session object can only save when its modified. But because you are modifying an object within
+            # session, the session object doesn't know its being modified and hence it cant save.
+            # To let the session object know its modified use:
+            # request.session.modified = True
+            request.session.modified = True
+            request.session["tasks"].remove(name)
+            print(request.session["tasks"])
+    return HttpResponseRedirect(reverse("todo:index"))
