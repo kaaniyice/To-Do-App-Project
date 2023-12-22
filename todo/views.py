@@ -4,9 +4,6 @@ from django.urls import reverse
 from django import forms
 
 
-
-
-
 # Create your views here.
 def index(request):
     if "tasks" not in request.session or request.session["tasks"] is None:
