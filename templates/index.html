@@ -1,4 +1,4 @@
-{% extends "todo/layout.html" %}
+{% extends "layout.html" %}
 
 {% block body %}
     <h1>Tasks</h1>
@@ -51,5 +51,8 @@
         {% endfor %}
       </tbody>
     </table>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
 {% endblock %}
 
