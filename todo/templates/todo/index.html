@@ -6,8 +6,13 @@
       <h1>Add Task</h1>
     <form action="{% url 'todo:add' %}" method="post">
         {% csrf_token %}
-        <input type="text" name="add_name">
-        <input type="date" name="add_date">
+        <input type="text" name="description">
+        <input type="date" name="deadline">
+        <select name="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+        </select>
         <button type="submit">Submit</button>
     </form>
     <br>
@@ -25,12 +30,18 @@
         <tr>
           <th>•</th>
           <td>
-            {{ task }}
+            {{ task.description }}
+          </td>
+          <td>
+            {{ task.deadline }}
+          </td>
+          <td>
+            {{ task.priority }}
           </td>
           <td>
             <form action="{% url 'todo:remove' %}" method="post">
               {% csrf_token %}
-              <input type="hidden" name="task_value" value="{{ task }}">
+              <input type="hidden" name="task_id" value="{{ task.id }}">
               <button type="submit">X</button>
             </form>
           </td>
