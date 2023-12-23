@@ -9,6 +9,7 @@ def register(request):
     if request.method == 'POST':
         username = request.POST.get('user_name')
         password = request.POST.get('user_password')
+        password2 = request.POST.get('user_password_again')
         # Ensure username and password are not empty
         if not username or not password:
             # Handle empty fields
@@ -20,12 +21,15 @@ def register(request):
             return render(request, 'user/register.html', {'error': 'Username already exists.'})
 
         # If want to have email change None to email and get the value via email = request.POST.get('user_email')
-        try:
-            user = User.objects.create_user(username, None, password)
-            return HttpResponseRedirect(reverse("user:login"))
-        except Exception as error:
-            # Handle registration errors
-            return render(request, 'user/register.html', {'error': str(error)})
+        if password == password2:
+            try:
+                user = User.objects.create_user(username, None, password)
+                return HttpResponseRedirect(reverse("user:login"))
+            except Exception as error:
+                # Handle registration errors
+                return render(request, 'user/register.html', {'error': str(error)})
+        else:
+            return render(request, 'user/register.html', {'error': "Passwords don't match"})
 
     else:
         # Render the registration form
