@@ -30,6 +30,8 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'user:login'
+
 
 # Application definition
 

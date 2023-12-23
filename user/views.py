@@ -39,7 +39,9 @@ def login_view(request):
 
         # Attempt authentication
         user = authenticate(request, username=username, password=password)
-
+        if not username or not password:
+            # Handle empty fields
+            return render(request, 'user/login.html', {'error': 'Please fill in all fields.'})
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("todo:index"))

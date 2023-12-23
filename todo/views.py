@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django import forms
 
 
 # Create your views here.
+@login_required
 def index(request):
     if "tasks" not in request.session or request.session["tasks"] is None:
         request.session["tasks"] = []
@@ -13,6 +15,7 @@ def index(request):
     })
 
 
+@login_required
 def add(request):
     request.session.modified = True
     if request.method == "POST":
@@ -25,6 +28,7 @@ def add(request):
     return HttpResponseRedirect(reverse("todo:index"))
 
 
+@login_required
 def remove(request):
     if request.method == "POST":
         name = request.POST.get("task_value", "")
