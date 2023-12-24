@@ -1,58 +1,73 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1>Tasks</h1>
-    <div>
-      <h1>Add Task</h1>
-    <form action="{% url 'todo:add' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="description">
-        <input type="date" name="deadline">
-        <select name="priority">
-            <option value="low">Low</option>
-            <option value="medium" selected>Medium</option>
-            <option value="high">High</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Tasks</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody style=" background-color: lightblue;">
-        {% for task in tasks %}
-        <tr>
-          <th>•</th>
-          <td>
-            {{ task.description }}
-          </td>
-          <td>
-            {{ task.deadline }}
-          </td>
-          <td>
-            {{ task.priority }}
-          </td>
-          <td>
-            <form action="{% url 'todo:remove' %}" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="task_id" value="{{ task.id }}">
-              <button type="submit">X</button>
+    <div class="todo-app">
+        <div class="Title-wrapper">
+            <div class="title">
+                To-Do App
+            </div>
+        </div>
+        <div class="user-label">
+            <form action="{% url 'user:logout' %}" method="post">
+                {% csrf_token %}
+            <div class="user">
+                Hi!
+            </div>
+            <button class="logout">Log Out</button>
             </form>
-          </td>
-        </tr>
-        {% empty %}
-            <li>No tasks.</li>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        </div>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+      <form class="input-section" action="{% url 'todo:add' %}" method="post">
+          {% csrf_token %}
+        <input id="todoInput" type="text" name="description" placeholder="Add item..." />
+        <input type="date" name="deadline">
+        <div class="wrapper">
+            <div class="option">
+                <input class="input" type="radio" name="priority" value="low" >
+                <div class="btn">
+                  <span class="span">Low</span>
+                </div>
+            </div>
+            <div class="option">
+                <input class="input" type="radio" name="priority" value="medium" checked="">
+                <div class="btn">
+                  <span class="span">Medium</span>
+                </div>
+            </div>
+                <div class="option">
+                <input class="input" type="radio" name="priority" value="high">
+                <div class="btn">
+                  <span class="span">High</span>
+                </div>
+            </div>
+        </div>
+        <button id="addBtn" class="add" type="submit">Add</button>
+      </form>
+      <div class="todos">
+        <ul class="todo-list">
+            {% for task in tasks %}
+          <li class="li">
+          <input class="form-check-input" type="checkbox" name="done" value="Done">
+              <label class="form-check-label" for="inlineCheckbox1"></label>
+              <section class="layout">
+                  <div> <span class="todo-text">{{ task.description }}</span></div>
+                  <div><span class="todo-text">{{ task.deadline }}</span></div>
+                  <div><span class="todo-text">{{ task.priority }}</span></div>
+                  <div><button class="span-button" id="edit">E</button></div>
+                      <div><form action="{% url 'todo:remove' %}" method="post">
+                              {% csrf_token %}
+                              <input type="hidden" name="task_id" value="{{ task.id }}">
+                              <button class="span-button" type="submit">X</button>
+                          </form>
+                </div>
+              </section>
+              {% empty %}
+            {% endfor %}
+        </li>
+        </ul>
+      </div>
+    </div>
 {% endblock %}
 

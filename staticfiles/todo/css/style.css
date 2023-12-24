@@ -1,0 +1,278 @@
+body {
+  background-color: rgb(48, 48, 48) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial;
+}
+
+.todo-app {
+  width: 1000px;
+  height: 1000px;
+  border-radius: 15px;
+  margin: 80px 0px;
+}
+
+.title-wrapper {
+     color: white;
+     margin-bottom: 50px;
+     font-size: large;
+     font-family: Arial;
+     position: relative;
+}
+
+.title {
+    padding: 16px;
+    padding-left: 20px;
+    border: none;
+    background-color: rgb(33, 33, 33);
+    color: #fff;
+    font-size: 24px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+    -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+    box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+    margin-left: 45%;
+    margin-right: 40%;
+
+}
+
+.user-label {
+
+}
+
+.user {
+    color: #fff;
+    display: inline-block;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+.input-section {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 30px;
+}
+.input-section input[type="text"] {
+  flex-grow: 1;
+  padding: 16px;
+  border: none;
+  background-color: rgb(33, 33, 33);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+}
+.input-section input[type="text"]::placeholder {
+  color: #ddd;
+}
+.input-section input[type="text"]:focus {
+  outline: none;
+  background-color: #555;
+}
+.input-section button {
+  margin-left: 10px;
+  padding: 16px 23px;
+  border: none;
+  background-color: rgb(33, 33, 33);
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+}
+.input-section button:hover {
+  outline: none;
+  background-color: #555;
+}
+.input-section button[type="text"]::placeholder {
+  color: #ddd;
+}
+.add {
+  margin-right: 10px;
+}
+.todos {
+  width: 100%;
+  height: 800px;
+  margin-top: 50px;
+  padding: 10px 5px;
+  background-color: rgb(33, 33, 33);
+  border-radius: 30px;
+  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
+}
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.todo-list li {
+  display: flex;
+  align-items: center;
+  padding: 7px 30px;
+  background-color: rgb(38 37 37);
+  border-radius: 80px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.todo-list li span {
+  margin-left: 10px;
+  color: #fff;
+  /* font-size: 13px */
+}
+.delete-button {
+  padding: 3px;
+  border-radius: 80px;
+}
+.delete-button :hover {
+  outline: none;
+  background-color: #555;
+}
+.todo-text {
+  color: #fff !important;
+  margin-right: auto;
+  font-size: 16px !important;
+}
+.span-button {
+  background: rgb(38 37 37);
+  display: block;
+  padding: 5px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px !important;
+
+}
+.span-button:hover {
+  cursor:pointer;
+  background-color: rgb(52, 53, 53);
+  border-radius: 80px;
+  /* padding: 4px 6px; */
+  color: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+.face {
+  width: 100px;
+  z-index: 100;
+  height: 100px;
+  /* margin: auto; */
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 30%;
+}
+.not-found{
+  color: #fff;
+  top: 60%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 30%;
+}
+
+.wrapper {
+  --font-color-dark: #FFF;
+  --font-color-light: #FFF;
+  --bg-color: rgba(33,33,33);
+  --main-color: #323232;
+  position: relative;
+  width: 250px;
+  height: 36px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 34px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 4px 4px var(--main-color);
+  font-weight: bold;
+}
+
+.option {
+  width: 80.5px;
+  height: 28px;
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+}
+
+.span {
+  color: var(--font-color-dark);
+}
+
+.input:checked + .btn {
+  background-color: var(--main-color);
+}
+
+.input:checked + .btn .span {
+  color: var(--font-color-light);
+}
+
+[type="date"] {
+  background:rgba(33,33,33) url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+  color:#fff;
+  margin-left:4px;
+  margin-right:2px;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.logout {
+ font-weight: bold;
+ letter-spacing: 0.1em;
+ border: none;
+ border-radius: 1.1em;
+ background-color: #212121;
+ color: white;
+ padding: 1em 2em;
+}
+
+.logout:hover {
+    opacity: 0.7;
+    cursor:pointer;
+}
+
+.logout:active {
+    opacity: 0.5;
+}
+
+.layout {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}

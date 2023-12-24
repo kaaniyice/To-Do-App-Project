@@ -1,11 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>ToDo App</title>
+        <link rel="stylesheet" href="{% static '/todo/css/style.css' %}">
+
     </head>
     <body>
         {% block body %}
         {% endblock %}
     </body>
 </html>
+<script>
+    const editButtons = document.querySelectorAll('.edit-task');
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const taskId = button.dataset.taskId;
+            const modal = document.querySelector('.task-edit-modal');
+            if (modal.style.display == 'block')
+            {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'block';
+            }
+             // Show the modal
+        });
+    });
+</script>

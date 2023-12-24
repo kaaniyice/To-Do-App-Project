@@ -51,3 +51,17 @@ def remove(request):
         else:
             # Handle GET request if needed (e.g., confirmation page)
             return HttpResponseRedirect(reverse("todo:index"))
+
+
+@login_required
+def edit(request):
+    if request.method == "POST":
+        task_id = request.POST.get("task_id")
+        task = Task.objects.get(id=task_id, user=request.user)  # Retrieve task and check ownership
+        task.description = request.POST.get("description")
+        task.due_date = request.POST.get("due_date")
+        task.priority = request.POST.get("priority")
+        task.save()
+        return HttpResponseRedirect(reverse("todo:index"))  # Redirect to index
+    else:
+        return HttpResponseRedirect(reverse("todo:index"))
