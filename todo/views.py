@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
@@ -9,16 +11,23 @@ from user.models import Task
 @login_required
 def index(request):
     tasks = Task.objects.filter(user=request.user).order_by('deadline')
+    print(tasks)
     try:
         error = request.session["error"]
     except:
         error = ""
-    return render(request, "index.html", {"tasks": tasks,"error": error})
+    date = datetime.date.today()
+    return render(request, "index.html", {
+        "tasks": tasks,
+        "error": error,
+        "date": date,
+    })
 
 
 @login_required
 def add(request):
     if request.method == "POST":
+        request.session["error"] = ""
         description = request.POST.get("description")
         deadline = request.POST.get("deadline")  # Get other fields as needed
         priority = request.POST.get("priority")
@@ -28,29 +37,36 @@ def add(request):
             request.session["error"] = "Description is required"
             return HttpResponseRedirect(reverse("todo:index"))
         # Create task instance and assign user
-        if not deadline:
-            request.session["error"] = "Deadline is required"
-            return HttpResponseRedirect(reverse("todo:index"))
+        if deadline:
+            deadline_date = datetime.datetime.strptime(deadline, "%Y-%m-%d").date()
+            if deadline_date < datetime.date.today():
+                request.session["error"] = "The deadline can't be a past time"
+                return HttpResponseRedirect(reverse("todo:index"))
+        else:
+            deadline = None
         try:
             task = Task(
                 user=request.user,
                 description=description,
-                deadline=deadline,  # Set other fields as needed
+                deadline=deadline,
                 priority=priority
             )
             task.save()
         except Exception as error:
+            print(error)
             request.session["error"] = error
             return HttpResponseRedirect(reverse("todo:index"))
         # Validate using model methods
         return HttpResponseRedirect(reverse("todo:index"))
     else:
+
         return HttpResponseRedirect(reverse("todo:index"))
 
 
 @login_required
 def remove(request):
     if request.method == "POST":
+        request.session["error"] = ""
         task_id = request.POST.get("task_id")
         # Retrieve task by description and check ownership
         task = Task.objects.get(id=task_id, user=request.user)
@@ -65,6 +81,7 @@ def remove(request):
 @login_required
 def edit(request):
     if request.method == "POST":
+        request.session["error"] = ""
         task_id = request.POST.get("task_id")
         task = Task.objects.get(id=task_id, user=request.user)  # Retrieve task and check ownership
         task.description = request.POST.get("description")

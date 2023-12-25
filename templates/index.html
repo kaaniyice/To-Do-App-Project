@@ -11,9 +11,9 @@
             <form action="{% url 'user:logout' %}" method="post">
                 {% csrf_token %}
             <div class="user">
-                Hi!
+                Hi! {{ request.user }}
             </div>
-            <button class="logout">Log Out</button>
+            <button class="logout">LOGOUT</button>
             </form>
         </div>
         {% if error %}
@@ -49,11 +49,17 @@
         <ul class="todo-list">
             {% for task in tasks %}
           <li class="li">
-          <input class="form-check-input" type="checkbox" name="done" value="Done">
-              <label class="form-check-label" for="inlineCheckbox1"></label>
               <section class="layout">
+                  <div> <input class="form-check-input" type="checkbox" name="done" value="Done"></div>
                   <div> <span class="todo-text">{{ task.description }}</span></div>
-                  <div><span class="todo-text">{{ task.deadline }}</span></div>
+                  <div><span class="todo-text">{% if task.deadline == date %}
+                                                    Today
+                                                {% elif task.deadline %}
+                                                    {{ task.deadline }}
+                                                {% else %}
+                                                    No Date
+                                                {% endif %}
+                  </span></div>
                   <div><span class="todo-text">{{ task.priority }}</span></div>
                   <div><button class="span-button" id="edit">E</button></div>
                       <div><form action="{% url 'todo:remove' %}" method="post">

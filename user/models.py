@@ -43,10 +43,10 @@ class Task(AbstractModel):
         help_text='',
     )
     deadline = models.DateField(
+        null=True,
         blank=True,
         verbose_name='Due Date',
         help_text='',
-        validators=[MinValueValidator(datetime.now() + timedelta(days=1)), ]
     )
 
     priority = models.CharField(
@@ -60,15 +60,14 @@ class Task(AbstractModel):
         help_text='',
     )
 
-    def extend_deadline(self, days):
-        self.deadline += timedelta(days=days)
-        self.save()
-
     def change_done_status(self):
         if self.done:
             self.done = False
         else:
             self.done = True
+
+    def name(self):
+        return f"{self.user}"
 
     def __str__(self):
         return f'Task Setting: {self.description}'

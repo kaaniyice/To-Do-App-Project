@@ -141,6 +141,7 @@ body {
   color: #fff !important;
   margin-right: auto;
   font-size: 16px !important;
+  word-wrap: break-word;
 }
 .span-button {
   background: rgb(38 37 37);
@@ -273,6 +274,7 @@ body {
   width: 100%;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 10px 450px 200px 150px 20px 20px;
   gap: 8px;
+
 }
