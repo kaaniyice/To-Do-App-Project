@@ -45,7 +45,7 @@
         </div>
         <button id="addBtn" class="add" type="submit">Add</button>
       </form>
-      <div class="todos">
+      <div id="todos" class="todos">
         <ul class="todo-list">
             {% for task in tasks %}
           <li class="li">
@@ -61,7 +61,7 @@
                                                 {% endif %}
                   </span></div>
                   <div><span class="todo-text">{{ task.priority }}</span></div>
-                  <div><button class="span-button" id="edit">E</button></div>
+                  <div><button class="span-button" name="{{task.id}}" id="edit">E</button></div>
                       <div><form action="{% url 'todo:remove' %}" method="post">
                               {% csrf_token %}
                               <input type="hidden" name="task_id" value="{{ task.id }}">
@@ -69,6 +69,58 @@
                           </form>
                 </div>
               </section>
+              <div id="centerDIV{{task.id}}"  style="position: fixed;
+                                        top: 0;
+                                        left: 0;
+                                        background-color: rgb(0 0 0 / 75%);
+                                        width: 100%;
+                                        height: 100%;
+                                        padding-top: 100px;
+                                        display: none;">
+                <!-- the element which will float at the center of the screen -->
+                <div class="divFloat">
+                  <input type="button" id="btClose{{task.id}}" class="btClose" value="X"/>
+                    <form action="{% url 'todo:edit'  %}" method="post">
+                        {% csrf_token %}
+                      <input type="hidden" name="task_id" value="{{ task.id }}">
+                      <section class="layout-float">
+                        <div>
+                          <span>Description:</span>
+                          <input type="text" name="description" id="edit-description">
+                        </div>
+                      <div>
+                          <span >Due Date:</span>
+                          <input type="date" name="due-date">
+                      </div>
+                      <div>
+                          <span>Priority:</span>
+                          <div class="wrapper">
+                            <div class="option">
+                                <input class="input" type="radio" name="priority" value="low" >
+                                <div class="btn">
+                                  <span class="span">Low</span>
+                                </div>
+                            </div>
+                            <div class="option">
+                                <input class="input" type="radio" name="priority" value="medium" checked="">
+                                <div class="btn">
+                                  <span class="span">Medium</span>
+                                </div>
+                            </div>
+                                <div class="option">
+                                <input class="input" type="radio" name="priority" value="high">
+                                <div class="btn">
+                                  <span class="span">High</span>
+                                </div>
+                            </div>
+
+                        </div>
+                          <button class="save-button" type="submit">Save</button>
+                      </div>
+                      </section>
+                    </form>
+                </div>
+              </div>
               {% empty %}
             {% endfor %}
         </li>

@@ -1,5 +1,4 @@
 import datetime
-
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
@@ -11,17 +10,18 @@ from user.models import Task
 @login_required
 def index(request):
     tasks = Task.objects.filter(user=request.user).order_by('deadline')
-    print(tasks)
     try:
         error = request.session["error"]
     except:
         error = ""
     date = datetime.date.today()
-    return render(request, "index.html", {
+
+    context = {
         "tasks": tasks,
         "error": error,
         "date": date,
-    })
+    }
+    return render(request, "index.html", context=context)
 
 
 @login_required
@@ -59,7 +59,6 @@ def add(request):
         # Validate using model methods
         return HttpResponseRedirect(reverse("todo:index"))
     else:
-
         return HttpResponseRedirect(reverse("todo:index"))
 
 
