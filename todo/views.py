@@ -9,7 +9,11 @@ from user.models import Task
 @login_required
 def index(request):
     tasks = Task.objects.filter(user=request.user).order_by('deadline')
-    return render(request, "index.html", {"tasks": tasks})
+    try:
+        error = request.session["error"]
+    except:
+        error = ""
+    return render(request, "index.html", {"tasks": tasks,"error": error})
 
 
 @login_required
@@ -21,8 +25,12 @@ def add(request):
         # Manual validation (or use model validation methods for convenience)
         if not description:
             # Handle missing description
-            return render(request, "index.html", {"error": "Description is required"})
+            request.session["error"] = "Description is required"
+            return HttpResponseRedirect(reverse("todo:index"))
         # Create task instance and assign user
+        if not deadline:
+            request.session["error"] = "Deadline is required"
+            return HttpResponseRedirect(reverse("todo:index"))
         try:
             task = Task(
                 user=request.user,
@@ -32,7 +40,8 @@ def add(request):
             )
             task.save()
         except Exception as error:
-            return render(request, "index.html", {"error": error})
+            request.session["error"] = error
+            return HttpResponseRedirect(reverse("todo:index"))
         # Validate using model methods
         return HttpResponseRedirect(reverse("todo:index"))
     else:
