@@ -91,23 +91,26 @@ WSGI_APPLICATION = 'ToDoApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'Dg-44cfACa35CcdEe6-e53b2B4*gBDfD',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '19126',
+# IF POSTGRES
+if env('POSTGRES'):
+    DATABASES = {
+        'default': {
+            'ENGINE': env('POSTGRES_ENGINE'),
+            'NAME': env('POSTGRES_NAME'),
+            'USER': env('POSTGRES_USER'),
+            'PASSWORD': env('POSTGRES_PASSWORD'),
+            'HOST': env('POSTGRES_HOST'),
+            'PORT': env('POSTGRES_PORT'),
+        }
     }
-}
+# IF NOT USE LOCAL
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 
