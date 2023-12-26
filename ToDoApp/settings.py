@@ -36,6 +36,10 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 
 CSFR_TRUSTED_ORIGINS = env('CSFR_TRUSTED_ORIGINS', cast=list)
 
+CORS_ALLOWED_ORIGINS = [
+    'https://withtodoo.up.railway.app',
+]
+
 
 LOGIN_URL = 'user:login'
 
