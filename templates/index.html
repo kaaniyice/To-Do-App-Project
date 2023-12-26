@@ -25,19 +25,19 @@
         <input type="date" name="deadline">
         <div class="wrapper">
             <div class="option">
-                <input class="input" type="radio" name="priority" value="low" >
+                <input class="input" type="radio" name="priority" value="Low" >
                 <div class="btn">
                   <span class="span">Low</span>
                 </div>
             </div>
             <div class="option">
-                <input class="input" type="radio" name="priority" value="medium" checked="">
+                <input class="input" type="radio" name="priority" value="Medium" checked="">
                 <div class="btn">
                   <span class="span">Medium</span>
                 </div>
             </div>
                 <div class="option">
-                <input class="input" type="radio" name="priority" value="high">
+                <input class="input" type="radio" name="priority" value="High">
                 <div class="btn">
                   <span class="span">High</span>
                 </div>
@@ -60,7 +60,7 @@
                                                     No Date
                                                 {% endif %}
                   </span></div>
-                  <div><span class="todo-text">{{ task.priority }}</span></div>
+                  <div><span class="todo-text">{{ task.priority }} Priority</span></div>
                   <div><button class="span-button" name="{{task.id}}" id="edit">E</button></div>
                       <div><form action="{% url 'todo:remove' %}" method="post">
                               {% csrf_token %}
@@ -96,24 +96,23 @@
                           <span>Priority:</span>
                           <div class="wrapper">
                             <div class="option">
-                                <input class="input" type="radio" name="priority" value="low" >
+                                <input class="input" type="radio" name="priority" value="Low" >
                                 <div class="btn">
                                   <span class="span">Low</span>
                                 </div>
                             </div>
                             <div class="option">
-                                <input class="input" type="radio" name="priority" value="medium" checked="">
+                                <input class="input" type="radio" name="priority" value="Medium" checked="">
                                 <div class="btn">
                                   <span class="span">Medium</span>
                                 </div>
                             </div>
                                 <div class="option">
-                                <input class="input" type="radio" name="priority" value="high">
+                                <input class="input" type="radio" name="priority" value="High">
                                 <div class="btn">
                                   <span class="span">High</span>
                                 </div>
                             </div>
-
                         </div>
                           <button class="save-button" type="submit">Save</button>
                       </div>
