@@ -283,12 +283,7 @@ body {
 }
 
 
-
-#centerDIV {
-
-    }
-
-    .divFloat {
+.divFloat {
     margin: 0 auto;
     background-color: #333;
     border: solid 1px #999;
@@ -302,66 +297,66 @@ body {
     -webkit-transition: 200ms -webkit-transform;
     box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
     display: block;
-    }
-    .btClickHere {
-        background-color: #587898;
-        border: solid 1px #587898;
-        color: #FFF;
-        -moz-border-radius: 0 7px 7px 0;
-        -webkit-border-radius: 0 7px 7px 0;
-        border-radius: 7px 7px 7px 7px;
-    }
-    .btClose {
-        margin: 0 auto;
-        color: white;
-        border: 1px;
-        border-radius: 25px;
-        background: #333;
-        width: auto;
-        float: right;
-        clear: both;
-        cursor: pointer;
-    }
-    .btGetPass {
-      color: #FFF;
-      padding: 2px 4px;
-      width: 150px;
-      background-color: #FF780B;
-      border: solid 1px #FF780B;
-      border-top-right-radius: 10px 20px;
-      border-bottom-right-radius: 10px 20px;
-      border-bottom-left-radius: 10px 20px;
-      border-top-left-radius: 10px 20px;
-      display: block;
-    }
+}
+.btClickHere {
+    background-color: #587898;
+    border: solid 1px #587898;
+    color: #FFF;
+    -moz-border-radius: 0 7px 7px 0;
+    -webkit-border-radius: 0 7px 7px 0;
+    border-radius: 7px 7px 7px 7px;
+}
+.btClose {
+    margin: 0 auto;
+    color: white;
+    border: 1px;
+    border-radius: 25px;
+    background: #333;
+    width: auto;
+    float: right;
+    clear: both;
+    cursor: pointer;
+}
+.btGetPass {
+    color: #FFF;
+    padding: 2px 4px;
+    width: 150px;
+    background-color: #FF780B;
+    border: solid 1px #FF780B;
+    border-top-right-radius: 10px 20px;
+    border-bottom-right-radius: 10px 20px;
+    border-bottom-left-radius: 10px 20px;
+    border-top-left-radius: 10px 20px;
+    display: block;
+}
 
-    .layout-float {
-        width: 500px;
-        height: 220px;
-        display: grid;
-        grid-template-rows: repeat(4, 1fr);
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
+.layout-float {
+    width: 500px;
+    height: 220px;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
 
-    .save-button {
-        font-weight: bold;
-        margin-left: 410px;
-        padding: 10px 23px;
-        border: none;
-        background-color: rgb(33, 33, 33);
-        color: #ffffff;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+.save-button {
+    font-weight: bold;
+    margin-left: 410px;
+    padding: 10px 23px;
+    border: none;
+    background-color: rgb(33, 33, 33);
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    #edit-description {
-        width: 70%;
-        padding: 10px;
-        border: none;
-        background-color: rgb(33, 33, 33);
-        color: #fff;
-        font-size: 16px;
-        border-radius: 30px;
-    }
+#edit-description {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    background-color: rgb(33, 33, 33);
+    color: #fff;
+    font-size: 16px;
+    border-radius: 30px;
+}
