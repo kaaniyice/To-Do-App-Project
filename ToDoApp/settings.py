@@ -17,7 +17,7 @@ import mimetypes
 
 mimetypes.add_type("text/css", ".css", True)
 
-env = environ.Env(Debug=(bool, False))
+env = environ.Env(Debug=(bool, False), POSTGRES=(bool, True))
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,9 +36,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 
 CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS', cast=list)
 
-CORS_ALLOWED_ORIGINS = [
-    'https://withtodoo.up.railway.app',
-]
+CORS_ALLOWED_ORIGINS = env('CORS_ALLOWED_ORIGINS', cast=list)
 
 
 LOGIN_URL = 'user:login'
