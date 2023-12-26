@@ -41,6 +41,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CSFR_TRUSTED_ORIGINS = ["*"]
 
+
 LOGIN_URL = 'user:login'
 
 
