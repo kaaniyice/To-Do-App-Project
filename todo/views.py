@@ -84,8 +84,17 @@ def edit(request):
         task_id = request.POST.get("task_id")
         task = Task.objects.get(id=task_id, user=request.user)  # Retrieve task and check ownership
         task.description = request.POST.get("description")
-        task.due_date = request.POST.get("due_date")
+        task.deadline = request.POST.get("due_date")
         task.priority = request.POST.get("priority")
+        if not task.description:
+            # Handle missing description
+            request.session["error"] = "Description is required"
+            return HttpResponseRedirect(reverse("todo:index"))
+        if task.deadline:
+            deadline_date = datetime.datetime.strptime(task.deadline, "%Y-%m-%d").date()
+            if deadline_date < datetime.date.today():
+                request.session["error"] = "The deadline can't be a past time"
+                return HttpResponseRedirect(reverse("todo:index"))
         task.save()
         return HttpResponseRedirect(reverse("todo:index"))  # Redirect to index
     else:
