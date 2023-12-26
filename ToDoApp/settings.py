@@ -34,9 +34,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = ["*"]
-
-CSFR_TRUSTED_ORIGINS = ["*"]
+CSFR_TRUSTED_ORIGINS = env('CSFR_TRUSTED_ORIGINS', cast=list)
 
 
 LOGIN_URL = 'user:login'
