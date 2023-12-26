@@ -61,7 +61,7 @@
                                                 {% endif %}
                   </span></div>
                   <div><span class="todo-text">{{ task.priority }} Priority</span></div>
-                  <div><button class="span-button" name="{{task.id}}" id="edit">E</button></div>
+                  <div><button class="span-button" name="{{task.id}}" id="edit">Edit</button></div>
                       <div><form action="{% url 'todo:remove' %}" method="post">
                               {% csrf_token %}
                               <input type="hidden" name="task_id" value="{{ task.id }}">
