@@ -32,12 +32,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["withtodoo.up.railway.app"]
+ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://withtodoo.up.railway.app",
-    # Add other trusted domains if needed
-]
+CORS_ALLOWED_ORIGINS = ["*"]
 
 CSFR_TRUSTED_ORIGINS = ["*"]
 
